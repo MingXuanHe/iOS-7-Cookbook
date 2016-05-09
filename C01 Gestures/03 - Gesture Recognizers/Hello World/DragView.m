@@ -30,6 +30,11 @@
 	ty = self.transform.ty;
     scale = self.scaleX;
     theta = self.rotation;
+    
+    NSLog(@"tx %f",tx);
+    NSLog(@"ty %f",ty);
+    NSLog(@"scale %f",scale);
+    NSLog(@"theta %f",theta);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -75,7 +80,12 @@
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)gestureRecognizer
 {
-	scale = gestureRecognizer.scale;
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        //刚开始捏合时获取上次的缩放值
+        gestureRecognizer.scale = scale;
+    }
+        scale = gestureRecognizer.scale;
+
 	[self updateTransformWithOffset:CGPointZero];
 }
 
@@ -91,7 +101,7 @@
 	if (self)
     {
         self.userInteractionEnabled = YES;
-        
+
         // Reset geometry to identities
         self.transform = CGAffineTransformIdentity;
         tx = 0.0f; ty = 0.0f; scale = 1.0f;	theta = 0.0f;
@@ -101,6 +111,7 @@
         UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
         self.gestureRecognizers = @[rot, pinch, pan];
+
         for (UIGestureRecognizer *recognizer in self.gestureRecognizers)
         {
             recognizer.delegate = self;

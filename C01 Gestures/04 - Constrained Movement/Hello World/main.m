@@ -48,8 +48,11 @@
 	CGPoint newcenter = CGPointMake(previousLocation.x + translation.x, previousLocation.y + translation.y);
 	
 	// Restrict movement within parent bounds
+    NSLog(@"bounds = %@", NSStringFromCGRect(self.bounds));
+    NSLog(@"bounds = %f", self.superview.bounds.size.height);
+
 	float halfx = CGRectGetMidX(self.bounds);
-	newcenter.x = MAX(halfx, newcenter.x);
+	newcenter.x = MAX(halfx, newcenter.x); ///<最小不小于中点的frame
 	newcenter.x = MIN(self.superview.bounds.size.width - halfx, newcenter.x);
 	
 	float halfy = CGRectGetMidY(self.bounds);

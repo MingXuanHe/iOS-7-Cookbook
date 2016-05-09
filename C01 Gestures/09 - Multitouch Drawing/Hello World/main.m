@@ -48,6 +48,9 @@
 		NSString *key = [NSString stringWithFormat:@"%d", (int) touch];
 		CGPoint pt = [touch locationInView:self];
 		
+        NSLog(@"key %@",key);
+        NSLog(@"pt %@",NSStringFromCGPoint(pt));
+        
 		UIBezierPath *path = [UIBezierPath bezierPath];
 		path.lineWidth = IS_IPAD ? 8: 4;
         path.lineCapStyle = kCGLineCapRound;

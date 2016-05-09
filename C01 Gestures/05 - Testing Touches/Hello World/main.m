@@ -39,6 +39,12 @@ const CGFloat kSideLength = 96.0f;
     return self;
 }
 
+/** 圆的方程
+ X²+Y²=1 ，圆心O（0，0）被称为1单位圆；
+ x²+y²=r²，圆心O（0，0），半径r；
+ (x-a)²+(y-b)²=r²，圆心O（a，b），半径r。
+ */
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
 	CGPoint pt;
@@ -105,6 +111,7 @@ const CGFloat kSideLength = 96.0f;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.view.backgroundColor = [UIColor blackColor];
     
     // Add the circles to random points on the screen
@@ -113,7 +120,7 @@ const CGFloat kSideLength = 96.0f;
         DragView *dragger = [[DragView alloc] initWithImage:[self createImage]];
         dragger.center = [self randomPosition:self.interfaceOrientation];
         dragger.tag = 100 + i;
-        //dragger.backgroundColor = [UIColor lightGrayColor];
+        dragger.backgroundColor = [UIColor lightGrayColor];
         [self.view addSubview:dragger];
     }
 }

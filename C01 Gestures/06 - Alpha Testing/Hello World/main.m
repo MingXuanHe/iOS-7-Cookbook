@@ -3,7 +3,7 @@
  Erica Sadun, http://ericasadun.com
  iOS 7 Cookbook
  Use at your own risk. Do no harm.
- 
+ 根据位图像素的不透明度来
  */
 
 @import UIKit;
@@ -15,7 +15,6 @@
 
 // Return the alpha byte offset
 static NSUInteger alphaOffset(NSUInteger x, NSUInteger y, NSUInteger w){return y * w * 4 + x * 4 + 0;}
-
 
 
 // Return a byte array of image
