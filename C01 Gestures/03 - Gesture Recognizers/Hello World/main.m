@@ -34,7 +34,15 @@
     [super viewDidAppear:animated];
     sunView = [[DragView alloc] initWithImage:[UIImage imageNamed:@"sun.png"]];
     [self.view addSubview:sunView];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    //保存上次打开的位置信息
     sunView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    NSString *frameStr = [userDefaults objectForKey:@"frame"];
+    if (frameStr) {
+        sunView.frame = CGRectFromString(frameStr);
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

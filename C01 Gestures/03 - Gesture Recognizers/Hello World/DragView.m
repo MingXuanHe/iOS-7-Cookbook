@@ -46,6 +46,10 @@
 		self.transform = CGAffineTransformIdentity;
 		tx = 0.0f; ty = 0.0f; scale = 1.0f;	theta = 0.0f;
 	}
+    //触摸结束保存当前的位置信息
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *frameStr = NSStringFromCGRect(self.frame);
+    [userDefaults setObject:frameStr forKey:@"frame"];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
